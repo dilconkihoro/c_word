@@ -29,13 +29,23 @@ CREATE TABLE IF NOT EXISTS contact_us (
     UNIQUE KEY (email)
 );
 
--- Insert sample data into feedback table
-INSERT INTO feedback (name, email, phone_no, message) VALUES
-('John Doe', 'johndoe@example.com', '123-456-7890', 'Great service! I had an amazing experience with Kihoro Safaris.'),
-('Jane Smith', 'janesmith@example.com', '098-765-4321', 'I loved the destinations and the accommodations provided. Highly recommended!');
 
--- Insert sample data into contact_us table
-INSERT INTO contact_us (name, email, subject, message) VALUES
-('Alice Brown', 'alicebrown@example.com', 'Inquiry', 'I would like to know more about your travel packages.'),
-('Bob Johnson', 'bobjohnson@example.com', 'Booking', 'I am interested in booking a trip to Masai Mara.');
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    signup_date DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
+CREATE TABLE IF NOT EXISTS products (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(50) NOT NULL,
+    model VARCHAR(50) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    is_featured TINYINT(1) DEFAULT 0,
+    date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
